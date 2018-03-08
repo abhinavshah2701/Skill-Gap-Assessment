@@ -7,6 +7,8 @@ import { LoginComponent } from './component/login/login.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { AdminhomeComponent } from './component/adminhome/adminhome.component';
+import { AdminquestionComponent } from './component/adminquestion/adminquestion.component';
+import { AdminmenuComponent } from './component/adminmenu/adminmenu.component';
 
 
 @NgModule({
@@ -16,6 +18,8 @@ import { AdminhomeComponent } from './component/adminhome/adminhome.component';
     LoginComponent,
     FooterComponent,
     AdminhomeComponent,
+    AdminquestionComponent,
+    AdminmenuComponent,
   ],
   imports: [
     BrowserModule,
