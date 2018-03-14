@@ -7,9 +7,9 @@ import { LoginComponent } from './component/login/login.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { AdminhomeComponent } from './component/adminhome/adminhome.component';
-import { AdminquestionComponent } from './component/adminquestion/adminquestion.component';
 import { AdminmenuComponent } from './component/adminmenu/adminmenu.component';
 import { AdminManageFormComponent } from './component/admin-manage-form/admin-manage-form.component';
+import { AdminCreateFormComponent } from './component/admin-create-form/admin-create-form.component';
 
 
 @NgModule({
@@ -19,9 +19,9 @@ import { AdminManageFormComponent } from './component/admin-manage-form/admin-ma
     LoginComponent,
     FooterComponent,
     AdminhomeComponent,
-    AdminquestionComponent,
     AdminmenuComponent,
     AdminManageFormComponent,
+    AdminCreateFormComponent,
   ],
   imports: [
     BrowserModule,
