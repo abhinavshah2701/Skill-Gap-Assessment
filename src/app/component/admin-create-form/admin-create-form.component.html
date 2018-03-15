@@ -3,7 +3,7 @@
 <div class="row mt-5"></div>
 <div class="content-wrapper">
   <div class="container">
-    <form class="needs-validation" novalidate>
+    <form [formGroup]="questionForm" (ngSubmit)="onSubmit()" novalidate>
       <div class="card">
         <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12">
@@ -14,74 +14,76 @@
 
             <div class="card-body">
               <div class="form-row">
-                <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="form-group col-lg-4 col-md-4 col-sm-12">
                   <label for="exampleFormControlSelect1" class="font-weight-bold">Select Category</label>
-                  <select class="form-control" id="exampleFormControlSelect1">
-                    <option disabled selected>Select Category</option>
-                    <option>Technical</option>
-                    <option>Leadership</option>
-                    <option>Behavioral</option>
-                    <option>Soft</option>
+                  <select class="form-control" formControlName="category" id="exampleFormControlSelect1">
+                    <option value="" disabled>Select Category</option>
+                    <option *ngFor="let categoryType of categoryTypes" [value]="categoryType">{{categoryType}}</option>
                   </select>
                 </div>
 
-                <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="form-group col-lg-4 col-md-4 col-sm-12">
                   <label for="exampleFormControlSelect1" class="font-weight-bold">Select Sub-Category</label>
-                  <select class="form-control" id="exampleFormControlSelect1">
-                    <option disabled selected>Select Sub-Category</option>
-                    <option>Web Technologies</option>
-                    <option>Big Data Skills</option>
-                    <option>Communication skills</option>
-                    <option>Team works</option>
+                  <select class="form-control" formControlName="subcategory" id="exampleFormControlSelect1">
+                    <option value="" disabled>Select Sub-Category</option>
+                    <option *ngFor="let subcategoryType of subcategoryTypes" [value]="subcategoryType">{{subcategoryType}}</option>
                   </select>
                 </div>
 
-                <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="form-group col-lg-4 col-md-4 col-sm-12">
                   <label for="exampleFormControlSelect1" class="font-weight-bold">Select Skills</label>
-                  <select class="form-control" id="exampleFormControlSelect1">
-                    <option disabled selected>Select Skills</option>
-                    <option>Php</option>
-                    <option>Html</option>
-                    <option>Java</option>
-                    <option>Android</option>
+                  <select class="form-control" formControlName="skills" id="exampleFormControlSelect1">
+                    <option value="" disabled>Select Skills</option>
+                    <option *ngFor="let skillsType of skillsTypes" [value]="skillsType">{{skillsType}}</option>
                   </select>
                 </div>
               </div>
-              <br>
 
               <div class="form-row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="form-group col-lg-12 col-md-12 col-sm-12">
                   <label for="validationTooltip03" class="font-weight-bold">Form Name</label>
-                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Enter Form Name" required>
+                  <input type="text" class="form-control" formControlName="formname" id="validationTooltip03" placeholder="Enter Form Name"
+                    required>
                   <div class="invalid-tooltip">
                     Please Enter Form Name.
                   </div>
                 </div>
               </div>
-              <br>
 
-              <div class="form-row">
+              <div formArrayName="question_array">
+                <div *ngFor="let question of question_array.controls; let i=index" [formGroupName]="i">
+                  <div class="form-row">
+                    <div class="form-group col-lg-7 col-md-7 col-sm-12">
+                      <label for="validationTooltip03" class="font-weight-bold">Question {{i + 1}}</label>
+                      <input type="text" class="form-control" formControlName="questionname" id="validationTooltip03" placeholder="Enter Question"
+                        required>
+                      <div class="invalid-tooltip">
+                        Please Enter A Question.
+                      </div>
+                    </div>
 
-                <div class="col-lg-8 col-md-8 col-sm-12">
-                  <label for="validationTooltip03" class="font-weight-bold">Question</label>
-                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Enter Question" required>
-                  <div class="invalid-tooltip">
-                    Please Enter A Question.
+                    <div class="form-group col-lg-3 col-md-3 col-sm-12">
+                      <label for="exampleFormControlSelect1" class="font-weight-bold">Question Type</label>
+                      <select class="form-control" formControlName="questiontype" id="exampleFormControlSelect1">
+                        <option value="" disabled>Question Type</option>
+                        <option *ngFor="let questionType of questionTypes" [value]="questionType">{{questionType}}</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-lg-1 col-md-2 col-sm-12">
+                      <label for="exampleFormControlSelect1" class="font-weight-bold">Delete</label>
+                      <button type="button" class="btn btn-danger" (click)="removeQuestion(i)">
+                        <i class="fas fa-times" style="font-size:1em; color:white"></i>&nbsp; Remove
+                      </button>
+                    </div>
                   </div>
                 </div>
 
-                <div class="col-lg-4 col-md-4 col-sm-12">
-                  <label for="exampleFormControlSelect1" class="font-weight-bold">Select Question Type</label>
-                  <select class="form-control" id="exampleFormControlSelect1">
-                    <option disabled selected>Select Question Type</option>
-                    <option>Single Choice</option>
-                    <option>Multiple Choice</option>
-                    <option>Short Answer</option>
-                  </select>
-                </div>
-
+                <button type="button" class="btn btn-success" (click)="addQuestion()">
+                  <i class="fas fa-plus" style="font-size:1em; color:white"></i>&nbsp; Add Question
+                </button>
               </div>
-   
+
             </div>
 
             <div class="card-footer text-center">
@@ -94,6 +96,7 @@
       </div>
     </form>
   </div>
+  <!-- <p>questionForm value: {{ questionForm.value | json}}</p> -->
   <div class="row mb-5"></div>
   <div class="row mb-4"></div>
 </div>
