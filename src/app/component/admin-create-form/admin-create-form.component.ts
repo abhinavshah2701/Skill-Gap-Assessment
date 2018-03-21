@@ -19,6 +19,8 @@ export class AdminCreateFormComponent implements OnChanges {
   skillsTypes = skillsTypes;
   questionTypes = questionTypes;
 
+  questiontype: any;
+
 
   constructor(private fb: FormBuilder) {
     this.createForm();
@@ -38,6 +40,10 @@ export class AdminCreateFormComponent implements OnChanges {
     // this.questionForm.reset({
     // });
     this.setQuestions(this.question.questions);
+  }
+
+  onSelect(questionType){
+    this.questiontype=questionType;
   }
 
   get question_array(): FormArray {
