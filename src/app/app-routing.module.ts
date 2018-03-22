@@ -8,6 +8,7 @@ import { AdminCreateFormComponent }      from './component/admin-create-form/adm
 import { AdminManageCategoryComponent }      from './component/admin-manage-category/admin-manage-category.component';
 import { AdminAddCategoryComponent } from './component/admin-add-category/admin-add-category.component';
 import { AdminManageSubCategoryComponent } from './component/admin-manage-sub-category/admin-manage-sub-category.component';
+import { AdminAddSubCategoryComponent } from './component/admin-add-sub-category/admin-add-sub-category.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'adminManageCategory', component: AdminManageCategoryComponent },
   { path: 'adminAddCategory', component: AdminAddCategoryComponent },
   { path: 'adminManageSubCategory', component: AdminManageSubCategoryComponent },
+  { path: 'adminAddSubCategory', component: AdminAddSubCategoryComponent },
 ];
 
 @NgModule({
