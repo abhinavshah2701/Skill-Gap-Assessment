@@ -14,6 +14,7 @@ import { AdminhomeComponent } from './component/adminhome/adminhome.component';
 import { AdminmenuComponent } from './component/adminmenu/adminmenu.component';
 import { AdminManageFormComponent } from './component/admin-manage-form/admin-manage-form.component';
 import { AdminCreateFormComponent } from './component/admin-create-form/admin-create-form.component';
+import { AdminManageCategoryComponent } from './component/admin-manage-category/admin-manage-category.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { AdminCreateFormComponent } from './component/admin-create-form/admin-cr
     AdminmenuComponent,
     AdminManageFormComponent,
     AdminCreateFormComponent,
+    AdminManageCategoryComponent,
   ],
   imports: [
     BrowserModule,
