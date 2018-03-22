@@ -9,6 +9,7 @@ import { AdminManageCategoryComponent }      from './component/admin-manage-cate
 import { AdminAddCategoryComponent } from './component/admin-add-category/admin-add-category.component';
 import { AdminManageSubCategoryComponent } from './component/admin-manage-sub-category/admin-manage-sub-category.component';
 import { AdminAddSubCategoryComponent } from './component/admin-add-sub-category/admin-add-sub-category.component';
+import { AdminManageSkillComponent } from './component/admin-manage-skill/admin-manage-skill.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'adminAddCategory', component: AdminAddCategoryComponent },
   { path: 'adminManageSubCategory', component: AdminManageSubCategoryComponent },
   { path: 'adminAddSubCategory', component: AdminAddSubCategoryComponent },
+  { path: 'adminManageSkill', component: AdminManageSkillComponent },
 ];
 
 @NgModule({

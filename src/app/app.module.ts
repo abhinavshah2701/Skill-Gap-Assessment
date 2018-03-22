@@ -18,6 +18,7 @@ import { AdminManageCategoryComponent } from './component/admin-manage-category/
 import { AdminAddCategoryComponent } from './component/admin-add-category/admin-add-category.component';
 import { AdminManageSubCategoryComponent } from './component/admin-manage-sub-category/admin-manage-sub-category.component';
 import { AdminAddSubCategoryComponent } from './component/admin-add-sub-category/admin-add-sub-category.component';
+import { AdminManageSkillComponent } from './component/admin-manage-skill/admin-manage-skill.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { AdminAddSubCategoryComponent } from './component/admin-add-sub-category
     AdminAddCategoryComponent,
     AdminManageSubCategoryComponent,
     AdminAddSubCategoryComponent,
+    AdminManageSkillComponent,
   ],
   imports: [
     BrowserModule,
