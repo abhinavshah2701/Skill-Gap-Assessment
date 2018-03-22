@@ -6,6 +6,7 @@ import { AdminhomeComponent }      from './component/adminhome/adminhome.compone
 import { AdminManageFormComponent }      from './component/admin-manage-form/admin-manage-form.component';
 import { AdminCreateFormComponent }      from './component/admin-create-form/admin-create-form.component';
 import { AdminManageCategoryComponent }      from './component/admin-manage-category/admin-manage-category.component';
+import { AdminAddCategoryComponent } from './component/admin-add-category/admin-add-category.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'adminManageForm', component: AdminManageFormComponent },
   { path: 'adminCreateForm', component: AdminCreateFormComponent },
   { path: 'adminManageCategory', component: AdminManageCategoryComponent },
+  { path: 'adminAddCategory', component: AdminAddCategoryComponent },
 ];
 
 @NgModule({
