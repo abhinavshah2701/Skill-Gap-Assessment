@@ -50,7 +50,45 @@
                 </div>
               </div>
 
-              <div formArrayName="question_array">
+              <div class="form-row">
+                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                  <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg" (click)="addQuestion()">
+                    <i class="fas fa-plus" style="font-size:1em; color:white"></i>&nbsp; Add Question
+                  </button>
+                </div>
+              </div>
+
+
+              <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Add Question</h5>
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+
+                    <div class="modal-body">
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                      <a class="btn btn-primary" routerLink="/adminCreateForm" data-dismiss="modal">
+                        <i class="fas fa-save" style="font-size:1em; color:white"></i>&nbsp; Save
+                      </a>
+                      <button class="btn btn-danger" type="button" data-dismiss="modal">
+                        <i class="fas fa-times" style="font-size:1em; color:white"></i>&nbsp; Cancel
+                      </button>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div formArrayName="question_array">
                 <div *ngFor="let question of question_array.controls; let i=index" [formGroupName]="i">
                   <div class="form-row">
                     <div class="form-group col-lg-7 col-md-7 col-sm-12">
@@ -79,24 +117,16 @@
                   </div>
                 </div>
 
-                <div *ngIf="questiontype=='Single Choice'">
-                  <!-- Call Radio Button Component -->
-                </div>
-
-                <div *ngIf="questiontype=='Multiple Choice'">
-                  <!-- Call Multiple CHoice Button Component -->
-                </div>
-
                 <button type="button" class="btn btn-success" (click)="addQuestion()">
                   <i class="fas fa-plus" style="font-size:1em; color:white"></i>&nbsp; Add Question
                 </button>
-              </div>
+              </div> -->
 
             </div>
 
             <div class="card-footer text-center">
               <button class="btn btn-primary" type="submit">Add Form</button>&nbsp;
-              <button class="btn btn-primary"type="reset">Reset</button>
+              <button class="btn btn-primary" type="reset">Reset</button>
             </div>
 
           </div>
