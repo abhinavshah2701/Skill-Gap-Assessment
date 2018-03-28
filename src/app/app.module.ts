@@ -21,8 +21,7 @@ import { AdminManageSubCategoryComponent } from './component/admin-manage-sub-ca
 import { AdminAddSubCategoryComponent } from './component/admin-add-sub-category/admin-add-sub-category.component';
 import { AdminManageSkillComponent } from './component/admin-manage-skill/admin-manage-skill.component';
 import { AdminAddSkillComponent } from './component/admin-add-skill/admin-add-skill.component';
-
-import { UserService } from './service/user.service';
+import { HttpService } from './service/http.service';
 
 
 
@@ -50,7 +49,7 @@ import { UserService } from './service/user.service';
     ToastrModule.forRoot(),
     HttpClientModule
   ],
-  providers: [UserService],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
