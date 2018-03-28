@@ -6,7 +6,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8 col-md-10 col-sm-12">
-        <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()" novalidate>
+        <form [formGroup]="categoryForm" (ngSubmit)="onSubmit(categoryForm.value)" novalidate>
           <div class="card">
 
             <div class="card-header">
@@ -14,8 +14,6 @@
             </div>
 
             <div class="card-body">
-
-
               <div class="form-row">
                 <div class="form-group col-lg-12 col-md-12 col-sm-12">
                   <label for="validationTooltip03" class="font-weight-bold">Category Name</label>
@@ -26,17 +24,18 @@
                   </div>
                 </div>
               </div>
-
-
-
             </div>
 
             <div class="card-footer text-center">
-              <button class="btn btn-primary" type="submit">Add Category</button>&nbsp;
-              <button class="btn btn-primary" type="reset">Reset</button>
+              <button type="submit" class="btn btn-primary" [disabled]="!categoryForm.valid">Add Category &nbsp;
+                <i class="fas fa-location-arrow" style="font-size:1em; color:white"></i>
+              </button>&nbsp;
+  
+              <button type="reset" class="btn btn-primary">Clear &nbsp;
+                <i class="fas fa-undo" style="font-size:1em; color:white"></i>
+              </button>
             </div>
-
-
+        
           </div>
         </form>
       </div>

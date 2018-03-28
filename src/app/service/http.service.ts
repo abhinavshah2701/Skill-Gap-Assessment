@@ -4,7 +4,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class HttpService {
 
-  host = "http://localhost/Skill_Gap_Assement_Api/"
+  host = "http://192.168.0.102/Skill_Gap_Assement_Api/"
   constructor(public http: HttpClient) {
     console.log('Hello HttpProvider Provider');
   }
