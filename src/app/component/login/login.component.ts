@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../service/http.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr'; 
+import { timeout } from 'q';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
-  constructor(private httpService: HttpService,private formBuilder: FormBuilder,private router: Router) {
+  constructor(private httpService: HttpService,private formBuilder: FormBuilder,private router: Router,private toastr: ToastrService) {
     this.createForm();
    }
 
@@ -34,11 +36,11 @@ export class LoginComponent implements OnInit {
     this.httpService.post('request_handler.php',values).then((response)=>{
       console.log(response);
       if(response['success']==true){
-        window.alert("Login Successfull");
+        this.toastr.success('Login Successfull','',{timeOut:3000,closeButton:true,progressBar:true});
         this.router.navigate(['adminhome']);
       }
       else{
-        window.alert(response['error_message']);
+        this.toastr.error(response['error_message'],'',{timeOut:3000,closeButton:true,progressBar:true});
       }
     });
     console.log(values);
