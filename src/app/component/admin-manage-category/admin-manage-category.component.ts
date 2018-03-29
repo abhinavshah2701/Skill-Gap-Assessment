@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../service/http.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr'; 
 
 
 @Component({
@@ -14,7 +15,7 @@ export class AdminManageCategoryComponent implements OnInit {
   categoryForm: FormGroup;
   categories;
 
-  constructor(private httpService: HttpService,private formBuilder: FormBuilder,private router: Router) {
+  constructor(private httpService: HttpService,private formBuilder: FormBuilder,private router: Router,private toastr: ToastrService) {
     this.createForm();
     this.getCategoryData();
    }
@@ -36,12 +37,12 @@ export class AdminManageCategoryComponent implements OnInit {
     this.httpService.post('request_handler.php',values).then((response)=>{
       console.log(response);
       if(response['success']==true){
-        window.alert("Category Added");
+        this.toastr.success('Category Added','',{timeOut:3000,closeButton:true,progressBar:true});
         this.getCategoryData();
         this.createForm();
       }
       else{
-        window.alert(response['error_message']);
+        this.toastr.error(response['error_message'],'',{timeOut:3000,closeButton:true,progressBar:true});
       }
     });
     console.log(values);

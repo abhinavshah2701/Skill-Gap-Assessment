@@ -3,7 +3,6 @@ import { HttpService } from '../../service/http.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr'; 
-import { timeout } from 'q';
 
 @Component({
   selector: 'app-login',
