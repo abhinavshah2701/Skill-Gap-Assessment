@@ -41,9 +41,9 @@
                 </thead>
 
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Technical</td>
+                  <tr *ngFor="let category of categories">
+                    <th scope="row">{{category.category_id}}</th>
+                    <td>{{category.category_description}}</td>
                     <td>
                       <a routerLink="/adminquestion">
                         <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="Edit Category" style="font-size:1.3em; color:#007bff"></i>
@@ -55,53 +55,6 @@
                       </a>
                     </td>
                   </tr>
-
-                  <tr>
-                      <th scope="row">2</th>
-                      <td>Leadership</td>
-                      <td>
-                        <a routerLink="/adminquestion">
-                          <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="Edit Category" style="font-size:1.3em; color:#007bff"></i>
-                        </a>
-                      </td>
-                      <td>
-                        <a routerLink="/adminquestion">
-                          <i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Delete Category" style="font-size:1.3em; color:#dc3545"></i>
-                        </a>
-                      </td>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Behavioral</td>
-                        <td>
-                          <a routerLink="/adminquestion">
-                            <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="Edit Category" style="font-size:1.3em; color:#007bff"></i>
-                          </a>
-                        </td>
-                        <td>
-                          <a routerLink="/adminquestion">
-                            <i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Delete Category" style="font-size:1.3em; color:#dc3545"></i>
-                          </a>
-                        </td>
-                      </tr>
-
-                      <tr>
-                          <th scope="row">4</th>
-                          <td>Soft</td>
-                          <td>
-                            <a routerLink="/adminquestion">
-                              <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="Edit Category" style="font-size:1.3em; color:#007bff"></i>
-                            </a>
-                          </td>
-                          <td>
-                            <a routerLink="/adminquestion">
-                              <i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Delete Category" style="font-size:1.3em; color:#dc3545"></i>
-                            </a>
-                          </td>
-                        </tr>
-                 
-
                 </tbody>
               </table>
             </div>
