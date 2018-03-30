@@ -19,12 +19,74 @@
               </div>
               <div class="col-lg-1 col-md-1 col-sm-2">
                 <span class="align-middle">
-                  <a routerLink="/adminAddSkill">
+                  <a data-toggle="modal" data-target=".bd-example-modal-lg">
                     <i class="fas fa-plus-circle" data-toggle="tooltip" data-placement="top" title="Add Skill" style="font-size:2em; color:#28a745"></i>
                   </a>
                 </span>
               </div>
             </div>
+
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <form [formGroup]="skillForm" novalidate>
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Add Skill</h5>
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                      <div class="form-row">
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                          <label for="exampleFormControlSelect1" class="font-weight-bold">Select Category</label>
+                          <select class="form-control" formControlName="categoryname" id="exampleFormControlSelect1">
+                            <option value="" disabled selected>Select Category</option>
+                            <option *ngFor="let category of categories" value="{{category.category_description}}">{{category.category_description}}</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-row">
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                          <label for="exampleFormControlSelect1" class="font-weight-bold">Select Sub Category</label>
+                          <select class="form-control" formControlName="subcategoryname" id="exampleFormControlSelect1">
+                            <option value="" disabled selected>Select Sub Category</option>
+                            <option *ngFor="let subcategory of subcategories" value="{{subcategory.sub_category_description}}">{{subcategory.sub_category_description}}</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-row">
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                          <label for="validationTooltip03" class="font-weight-bold">Skill Name</label>
+                          <input type="text" class="form-control" formControlName="skillname" id="validationTooltip03" placeholder="Enter Skill Name" required>
+                          <div class="invalid-tooltip">
+                            Please Enter Skill Name.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" (click)="onSubmit(skillForm.value)" [disabled]="!skillForm.valid"
+                        data-dismiss="modal">
+                        Add Skill &nbsp;
+                        <i class="fas fa-location-arrow" style="font-size:1em; color:white"></i>
+                      </button>&nbsp;
+                      <button type="reset" class="btn btn-primary">
+                        Clear &nbsp;
+                        <i class="fas fa-undo" style="font-size:1em; color:white"></i>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
           </div>
           <div class="card-body">
 
@@ -43,11 +105,11 @@
                 </thead>
 
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Technical</td>
-                    <td>Web Technologies</td>
-                    <td>Php</td>
+                  <tr *ngFor="let skill of skills">
+                    <th scope="row">{{skill.skill_id}}</th>
+                    <td>{{skill.category_description}}</td>
+                    <td>{{skill.sub_category_description}}</td>
+                    <td>{{skill.skill_description}}</td>
                     <td>
                       <a routerLink="/adminquestion">
                         <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="Edit Skill" style="font-size:1.3em; color:#007bff"></i>
@@ -59,64 +121,6 @@
                       </a>
                     </td>
                   </tr>
-
-
-                  <tr>
-                      <th scope="row">2</th>
-                      <td>Technical</td>
-                      <td>Web Technologies</td>
-                      <td>Angular 5</td>
-                      <td>
-                        <a routerLink="/adminquestion">
-                          <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="Edit Skill" style="font-size:1.3em; color:#007bff"></i>
-                        </a>
-                      </td>
-                      <td>
-                        <a routerLink="/adminquestion">
-                          <i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Delete Skill" style="font-size:1.3em; color:#dc3545"></i>
-                        </a>
-                      </td>
-                    </tr>
-
-
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Technical</td>
-                        <td>Big Data</td>
-                        <td>Hadoop</td>
-                        <td>
-                          <a routerLink="/adminquestion">
-                            <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="Edit Skill" style="font-size:1.3em; color:#007bff"></i>
-                          </a>
-                        </td>
-                        <td>
-                          <a routerLink="/adminquestion">
-                            <i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Delete Skill" style="font-size:1.3em; color:#dc3545"></i>
-                          </a>
-                        </td>
-                      </tr>
-
-
-                      <tr>
-                          <th scope="row">4</th>
-                          <td>Technical</td>
-                          <td>Big Data</td>
-                          <td>Mongo Db</td>
-                          <td>
-                            <a routerLink="/adminquestion">
-                              <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="Edit Skill" style="font-size:1.3em; color:#007bff"></i>
-                            </a>
-                          </td>
-                          <td>
-                            <a routerLink="/adminquestion">
-                              <i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Delete Skill" style="font-size:1.3em; color:#dc3545"></i>
-                            </a>
-                          </td>
-                        </tr>
-
-                    
-
-                  
 
                 </tbody>
               </table>
