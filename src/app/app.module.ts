@@ -19,6 +19,8 @@ import { AdminCreateFormComponent } from './component/admin-create-form/admin-cr
 import { AdminManageCategoryComponent } from './component/admin-manage-category/admin-manage-category.component';
 import { AdminManageSubCategoryComponent } from './component/admin-manage-sub-category/admin-manage-sub-category.component';
 import { AdminManageSkillComponent } from './component/admin-manage-skill/admin-manage-skill.component';
+import { AdminUpdateCategoryComponent } from './component/admin-update-category/admin-update-category.component';
+
 import { HttpService } from './service/http.service';
 
 
@@ -36,6 +38,7 @@ import { HttpService } from './service/http.service';
     AdminManageCategoryComponent,
     AdminManageSubCategoryComponent,
     AdminManageSkillComponent,
+    AdminUpdateCategoryComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { AdminCreateFormComponent }      from './component/admin-create-form/adm
 import { AdminManageCategoryComponent }      from './component/admin-manage-category/admin-manage-category.component';
 import { AdminManageSubCategoryComponent } from './component/admin-manage-sub-category/admin-manage-sub-category.component';
 import { AdminManageSkillComponent } from './component/admin-manage-skill/admin-manage-skill.component';
+import { AdminUpdateCategoryComponent } from './component/admin-update-category/admin-update-category.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'adminManageForm', component: AdminManageFormComponent },
   { path: 'adminCreateForm', component: AdminCreateFormComponent },
   { path: 'adminManageCategory', component: AdminManageCategoryComponent },
+  { path: 'adminUpdateCategory/:id', component: AdminUpdateCategoryComponent },
   { path: 'adminManageSubCategory', component: AdminManageSubCategoryComponent },
   { path: 'adminManageSkill', component: AdminManageSkillComponent },
 ];
