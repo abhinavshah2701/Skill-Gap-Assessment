@@ -85,4 +85,16 @@ export class AdminManageSkillComponent implements OnInit {
       }
     });
   }
+
+  deleteSkill(id) {
+    this.httpService.post('request_handler.php', { deleteSkill: true, skill_id: id }).then((response) => {
+      if (response['success'] == true) {
+        this.toastr.success('Skill Deleted', '', { timeOut: 3000, closeButton: true, progressBar: true });
+        this.getSkillData();
+      }
+      else {
+        this.toastr.error(response['error_message'], '', { timeOut: 3000, closeButton: true, progressBar: true });
+      }
+    });
+  }
 }
