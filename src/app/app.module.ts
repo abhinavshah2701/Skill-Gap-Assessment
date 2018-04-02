@@ -21,6 +21,7 @@ import { AdminManageSubCategoryComponent } from './component/admin-manage-sub-ca
 import { AdminManageSkillComponent } from './component/admin-manage-skill/admin-manage-skill.component';
 import { AdminUpdateCategoryComponent } from './component/admin-update-category/admin-update-category.component';
 import { AdminUpdateSubCategoryComponent } from './component/admin-update-sub-category/admin-update-sub-category.component';
+import { AdminUpdateSkillComponent } from './component/admin-update-skill/admin-update-skill.component';
 
 import { HttpService } from './service/http.service';
 
@@ -41,6 +42,7 @@ import { HttpService } from './service/http.service';
     AdminManageSkillComponent,
     AdminUpdateCategoryComponent,
     AdminUpdateSubCategoryComponent,
+    AdminUpdateSkillComponent,
   ],
   imports: [
     BrowserModule,
