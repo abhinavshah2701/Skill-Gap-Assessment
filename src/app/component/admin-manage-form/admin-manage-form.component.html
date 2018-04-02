@@ -19,19 +19,90 @@
               </div>
               <div class="col-lg-1 col-md-1 col-sm-2">
                 <span class="align-middle">
-                  <a routerLink="/adminCreateForm">
+                  <a data-toggle="modal" data-target=".bd-example-modal-lg">
                     <i class="fas fa-plus-circle" data-toggle="tooltip" data-placement="top" title="Add Form" style="font-size:2em; color:#28a745"></i>
                   </a>
                 </span>
               </div>
             </div>
+
+
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <form [formGroup]="addform" novalidate>
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Add Form</h5>
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                      <div class="form-row">
+                        <div class="form-group col-lg-4 col-md-12 col-sm-12">
+                          <label for="exampleFormControlSelect1" class="font-weight-bold">Select Category</label>
+                          <select class="form-control" formControlName="categoryname" (change)="onSelect($event.target.value)" id="exampleFormControlSelect1">
+                            <option value="" disabled selected>Select Category</option>
+                            <option *ngFor="let category of categories" value="{{category.category_id}}">{{category.category_description}}</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group col-lg-4 col-md-12 col-sm-12">
+                          <label for="exampleFormControlSelect1" class="font-weight-bold">Select Sub Category</label>
+                          <select class="form-control" formControlName="subcategoryname" (change)="onSelectSub($event.target.value)"  id="exampleFormControlSelect1">
+                            <option value="" disabled selected>Select Sub Category</option>
+                            <option *ngFor="let subcategory of subcategories" value="{{subcategory.sub_category_id}}">{{subcategory.sub_category_description}}</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group col-lg-4 col-md-12 col-sm-12">
+                          <label for="exampleFormControlSelect1" class="font-weight-bold">Select Skill</label>
+                          <select class="form-control" formControlName="skillname" id="exampleFormControlSelect1">
+                            <option value="" disabled selected>Select Skill</option>
+                            <option *ngFor="let skill of skills" value="{{skill.skill_id}}">{{skill.skill_description}}</option>
+                          </select>
+                        </div>
+
+                      </div>
+
+
+                      <div class="form-row">
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                          <label for="validationTooltip03" class="font-weight-bold">Form Name</label>
+                          <input type="text" class="form-control" formControlName="formname" id="validationTooltip03" placeholder="Enter Form Name"
+                            required>
+                          <div class="invalid-tooltip">
+                            Please Enter Form Name.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" (click)="onSubmit(addform.value)" [disabled]="!addform.valid" data-dismiss="modal">
+                        Add Form &nbsp;
+                        <i class="fas fa-location-arrow" style="font-size:1em; color:white"></i>
+                      </button>&nbsp;
+                      <button type="reset" class="btn btn-primary">
+                        Clear &nbsp;
+                        <i class="fas fa-undo" style="font-size:1em; color:white"></i>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
           </div>
           <div class="card-body">
 
             <div class="table-responsive">
               <table class="table table-bordered table-hover text-center">
                 <thead class="thead" style="background: #343a40; color:white">
-                    <!-- <thead class="thead-dark"> -->
+                  <!-- <thead class="thead-dark"> -->
                   <tr>
                     <th scope="col">Sr No.</th>
                     <th scope="col">Form Name</th>
