@@ -35,7 +35,6 @@ export class AdminUpdateCategoryComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     values['category_id'] = id;
     this.httpService.post('request_handler.php', values).then((response) => {
-      console.log(response);
       if (response['success'] == true) {
         this.toastr.success('Category Updated', '', { timeOut: 3000, closeButton: true, progressBar: true });
         this.router.navigate(['adminManageCategory']);
@@ -44,7 +43,6 @@ export class AdminUpdateCategoryComponent implements OnInit {
         this.toastr.error(response['error_message'], '', { timeOut: 3000, closeButton: true, progressBar: true });
       }
     });
-    console.log(values);
   }
 
   

@@ -9,6 +9,7 @@ import { AdminManageCategoryComponent }      from './component/admin-manage-cate
 import { AdminManageSubCategoryComponent } from './component/admin-manage-sub-category/admin-manage-sub-category.component';
 import { AdminManageSkillComponent } from './component/admin-manage-skill/admin-manage-skill.component';
 import { AdminUpdateCategoryComponent } from './component/admin-update-category/admin-update-category.component';
+import { AdminUpdateSubCategoryComponent } from './component/admin-update-sub-category/admin-update-sub-category.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'adminManageCategory', component: AdminManageCategoryComponent },
   { path: 'adminUpdateCategory/:id', component: AdminUpdateCategoryComponent },
   { path: 'adminManageSubCategory', component: AdminManageSubCategoryComponent },
+  { path: 'adminUpdateSubCategory/:id', component: AdminUpdateSubCategoryComponent },
   { path: 'adminManageSkill', component: AdminManageSkillComponent },
 ];
 

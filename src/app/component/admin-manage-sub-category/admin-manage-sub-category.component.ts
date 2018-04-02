@@ -54,7 +54,7 @@ export class AdminManageSubCategoryComponent implements OnInit {
 
   getCategoryData()
   {
-    this.httpService.get('request_handler.php',{viewCategory:'viewCategory'}).then((response)=>{
+    this.httpService.get('request_handler.php',{viewCategory: true }).then((response)=>{
       if (response['success'] == true) {
         this.categories = response['data'];
       }
@@ -63,7 +63,7 @@ export class AdminManageSubCategoryComponent implements OnInit {
 
   getSubCategoryData()
   {
-    this.httpService.get('request_handler.php',{viewSubCategory:'viewSubCategory'}).then((response)=>{
+    this.httpService.get('request_handler.php',{viewSubCategory: true }).then((response)=>{
       if (response['success'] == true) {
         this.subcategories = response['data'];
       }

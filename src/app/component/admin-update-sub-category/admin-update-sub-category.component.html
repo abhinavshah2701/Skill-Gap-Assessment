@@ -1,0 +1,62 @@
+<app-adminmenu></app-adminmenu>
+
+<div class="row mt-5"></div>
+<div class="content-wrapper">
+  <div class="row mt-5"></div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10 col-sm-12">
+        <form [formGroup]="editSubCategoryForm" novalidate>
+          <div class="card">
+
+            <div class="card-header">
+              <h4>Edit Sub Category</h4>
+            </div>
+
+            <div class="card-body">
+
+
+              <div class="form-row">
+
+                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                  <label for="exampleFormControlSelect1" class="font-weight-bold">Select Category</label>
+                  <select class="form-control" formControlName="categoryname" id="exampleFormControlSelect1">
+                    <option value="" disabled selected>Select Category</option>
+                    <option *ngFor="let category of categories" value="{{category.category_description}}">{{category.category_description}}</option>
+                  </select>
+                </div>
+
+                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                  <label for="validationTooltip03" class="font-weight-bold">Sub Category Name</label>
+                  <input type="text" class="form-control" formControlName="subcategoryname" id="validationTooltip03"
+                    placeholder="Enter Sub Category Name">
+                  <div class="invalid-tooltip">
+                    Please Enter Sub Category Name.
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
+
+            <div class="card-footer text-center">
+              <button type="button" class="btn btn-primary" (click)="onSubmit(editSubCategoryForm.value)" [disabled]="!editSubCategoryForm.valid">Edit Sub Category &nbsp;
+                <i class="fas fa-location-arrow" style="font-size:1em; color:white"></i>
+              </button>&nbsp;
+
+              <button type="reset" class="btn btn-primary">Clear &nbsp;
+                <i class="fas fa-undo" style="font-size:1em; color:white"></i>
+              </button>
+            </div>
+
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- <p>subCategoryForm value: {{ subCategoryForm.value | json}}</p> -->
+  <div class="row mb-5"></div>
+  <div class="row mb-4"></div>
+</div>
