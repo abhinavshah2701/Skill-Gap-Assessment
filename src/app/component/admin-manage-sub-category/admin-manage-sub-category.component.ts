@@ -38,7 +38,6 @@ export class AdminManageSubCategoryComponent implements OnInit {
   {
     values['addSubCategory'] = true;
     this.httpService.post('request_handler.php',values).then((response)=>{
-      console.log(response);
       if(response['success']==true){
         this.toastr.success('Sub Category Added','',{timeOut:3000,closeButton:true,progressBar:true});
         this.getCategoryData();
@@ -49,7 +48,6 @@ export class AdminManageSubCategoryComponent implements OnInit {
         this.toastr.error(response['error_message'],'',{timeOut:3000,closeButton:true,progressBar:true});
       }
     });
-    console.log(values);
   }
 
   getCategoryData()
@@ -66,6 +64,18 @@ export class AdminManageSubCategoryComponent implements OnInit {
     this.httpService.get('request_handler.php',{viewSubCategory: true }).then((response)=>{
       if (response['success'] == true) {
         this.subcategories = response['data'];
+      }
+    });
+  }
+
+  deleteSubCategory(id) {
+    this.httpService.post('request_handler.php', { deleteSubCategory: true, sub_category_id: id }).then((response) => {
+      if (response['success'] == true) {
+        this.toastr.success('Sub Category Deleted', '', { timeOut: 3000, closeButton: true, progressBar: true });
+        this.getSubCategoryData();
+      }
+      else {
+        this.toastr.error(response['error_message'], '', { timeOut: 3000, closeButton: true, progressBar: true });
       }
     });
   }
