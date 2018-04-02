@@ -42,9 +42,9 @@
                       <div class="form-row">
                         <div class="form-group col-lg-12 col-md-12 col-sm-12">
                           <label for="exampleFormControlSelect1" class="font-weight-bold">Select Category</label>
-                          <select class="form-control" formControlName="categoryname" id="exampleFormControlSelect1">
+                          <select class="form-control" formControlName="categoryname" (change)="onSelect($event.target.value)" id="exampleFormControlSelect1">
                             <option value="" disabled selected>Select Category</option>
-                            <option *ngFor="let category of categories" value="{{category.category_description}}">{{category.category_description}}</option>
+                            <option *ngFor="let category of categories" value="{{category.category_id}}">{{category.category_description}}</option>
                           </select>
                         </div>
                       </div>
@@ -54,7 +54,7 @@
                           <label for="exampleFormControlSelect1" class="font-weight-bold">Select Sub Category</label>
                           <select class="form-control" formControlName="subcategoryname" id="exampleFormControlSelect1">
                             <option value="" disabled selected>Select Sub Category</option>
-                            <option *ngFor="let subcategory of subcategories" value="{{subcategory.sub_category_description}}">{{subcategory.sub_category_description}}</option>
+                            <option *ngFor="let subcategory of subcategories" value="{{subcategory.sub_category_id}}">{{subcategory.sub_category_description}}</option>
                           </select>
                         </div>
                       </div>
