@@ -106,6 +106,16 @@ export class AdminManageFormComponent implements OnInit {
     });
   }
 
-
+  deleteForm(id) {
+    this.httpService.post('request_handler.php', { deleteForm: true, form_id: id }).then((response) => {
+      if (response['success'] == true) {
+        this.toastr.success('Form Deleted', '', { timeOut: 3000, closeButton: true, progressBar: true });
+        this.getFormData();
+      }
+      else {
+        this.toastr.error(response['error_message'], '', { timeOut: 3000, closeButton: true, progressBar: true });
+      }
+    });
+  }
 
 }
