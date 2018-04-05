@@ -15,7 +15,6 @@ import { FooterComponent } from './component/footer/footer.component';
 import { AdminhomeComponent } from './component/adminhome/adminhome.component';
 import { AdminmenuComponent } from './component/adminmenu/adminmenu.component';
 import { AdminManageFormComponent } from './component/admin-manage-form/admin-manage-form.component';
-import { AdminCreateFormComponent } from './component/admin-create-form/admin-create-form.component';
 import { AdminManageCategoryComponent } from './component/admin-manage-category/admin-manage-category.component';
 import { AdminManageSubCategoryComponent } from './component/admin-manage-sub-category/admin-manage-sub-category.component';
 import { AdminManageSkillComponent } from './component/admin-manage-skill/admin-manage-skill.component';
@@ -38,7 +37,6 @@ import { HttpService } from './service/http.service';
     AdminhomeComponent,
     AdminmenuComponent,
     AdminManageFormComponent,
-    AdminCreateFormComponent,
     AdminManageCategoryComponent,
     AdminManageSubCategoryComponent,
     AdminManageSkillComponent,
