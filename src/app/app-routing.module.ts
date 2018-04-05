@@ -11,12 +11,14 @@ import { AdminManageSkillComponent } from './component/admin-manage-skill/admin-
 import { AdminUpdateCategoryComponent } from './component/admin-update-category/admin-update-category.component';
 import { AdminUpdateSubCategoryComponent } from './component/admin-update-sub-category/admin-update-sub-category.component';
 import { AdminUpdateSkillComponent } from './component/admin-update-skill/admin-update-skill.component';
+import { AdminUpdateFormComponent } from './component/admin-update-form/admin-update-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'adminhome', component: AdminhomeComponent },
   { path: 'adminManageForm', component: AdminManageFormComponent },
+  { path: 'adminUpdateForm/:id', component: AdminUpdateFormComponent },
   { path: 'adminCreateForm', component: AdminCreateFormComponent },
   { path: 'adminManageCategory', component: AdminManageCategoryComponent },
   { path: 'adminUpdateCategory/:id', component: AdminUpdateCategoryComponent },
