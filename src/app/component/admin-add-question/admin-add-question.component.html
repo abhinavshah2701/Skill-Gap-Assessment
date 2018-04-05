@@ -1,0 +1,104 @@
+<app-adminmenu></app-adminmenu>
+
+<div class="row mt-5"></div>
+<div class="content-wrapper">
+  <div class="row mt-5"></div>
+  <div class="container">
+    <form [formGroup]="questionForm" novalidate>
+      <div class="card">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+
+            <div class="card-header">
+              <h4>FormName Form</h4>
+            </div>
+
+            <div class="card-body">
+              <div class="form-row">
+                <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                  <label for="validationTooltip03" class="font-weight-bold">Question Description</label>
+                  <input type="text" class="form-control" formControlName="questionname" id="validationTooltip03" placeholder="Enter Question"
+                    required>
+                  <div class="invalid-tooltip">
+                    Please Enter A Question.
+                  </div>
+                </div>
+
+                <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                  <label for="exampleFormControlSelect1" class="font-weight-bold">Question Type</label>
+                  <select class="form-control" formControlName="questiontype" id="exampleFormControlSelect1">
+                    <option value="" disabled selected>Question Type</option>
+                    <option value="Single Choice">Single Choice</option>
+                    <option value="Multiple Choice">Multiple Choice</option>
+                  </select>
+                </div>
+
+                <div class="form-group col-lg-2 col-md-6 col-sm-12">
+                  <label for="validationTooltip03" class="font-weight-bold">Total Rating</label>
+                  <input type="text" class="form-control" formControlName="totalrating" id="validationTooltip03" placeholder="Enter Rating"
+                    required>
+                  <div class="invalid-tooltip">
+                    Please Enter A Rating.
+                  </div>
+                </div>
+
+              </div>
+
+              <div formArrayName="option_array">
+                <div *ngFor="let option of option_array.controls; let i=index" [formGroupName]="i">
+                  <div class="form-row">
+                    <div class="form-group col-lg-5 col-md-6 col-sm-12">
+                      <label for="validationTooltip03" class="font-weight-bold">Option {{i + 1}}</label>
+                      <input type="text" class="form-control" formControlName="optionname" id="validationTooltip03" placeholder="Enter Option"
+                        required>
+                      <div class="invalid-tooltip">
+                        Please Enter A Option.
+                      </div>
+                    </div>
+
+                    <div class="form-group col-lg-3 col-md-4 col-sm-12">
+                      <label for="validationTooltip03" class="font-weight-bold">Rating</label>
+                      <input type="text" class="form-control" formControlName="optionrating" id="validationTooltip03" placeholder="Enter Rating"
+                        required>
+                      <div class="invalid-tooltip">
+                        Please Enter Option Rating.
+                      </div>
+                    </div>
+
+                    <div class="form-group col-lg-1 col-md-2 col-sm-12">
+                      <label for="exampleFormControlSelect1" class="font-weight-bold">Delete</label>
+                      <button type="button" class="btn btn-danger" (click)="removeOption(i)">
+                        <i class="fas fa-times" style="font-size:1em; color:white"></i>&nbsp; Remove
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="button" class="btn btn-success" (click)="addOption()">
+                  <i class="fas fa-plus" style="font-size:1em; color:white"></i>&nbsp; Add Option
+                </button>
+              </div>
+
+            </div>
+
+            <div class="card-footer text-center">
+
+              <button type="button" class="btn btn-primary" (click)="onSubmit(questionForm.value)" [disabled]="!questionForm.valid" data-dismiss="modal">
+                Add Question &nbsp;
+                <i class="fas fa-location-arrow" style="font-size:1em; color:white"></i>
+              </button>&nbsp;
+              <button type="reset" class="btn btn-primary">
+                Clear &nbsp;
+                <i class="fas fa-undo" style="font-size:1em; color:white"></i>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- <p>questionForm value: {{ questionForm.value | json}}</p> -->
+  <div class="row mb-5"></div>
+  <div class="row mb-4"></div>
+</div>
