@@ -51,7 +51,7 @@
 
                         <div class="form-group col-lg-4 col-md-12 col-sm-12">
                           <label for="exampleFormControlSelect1" class="font-weight-bold">Select Sub Category</label>
-                          <select class="form-control" formControlName="subcategoryname" (change)="onSelectSub($event.target.value)"  id="exampleFormControlSelect1">
+                          <select class="form-control" formControlName="subcategoryname" (change)="onSelectSub($event.target.value)" id="exampleFormControlSelect1">
                             <option value="" disabled selected>Select Sub Category</option>
                             <option *ngFor="let subcategory of subcategories" value="{{subcategory.sub_category_id}}">{{subcategory.sub_category_description}}</option>
                           </select>
@@ -105,44 +105,24 @@
                   <!-- <thead class="thead-dark"> -->
                   <tr>
                     <th scope="col">Sr No.</th>
+                    <th scope="col">Skill Name</th>
                     <th scope="col">Form Name</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col">Add Question</th>
+                    <th scope="col">Edit Form</th>
+                    <th scope="col">Delete Form</th>
                   </tr>
                 </thead>
 
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Technical Form 1</td>
+                  <tr *ngFor="let form of forms">
+                    <th scope="row">{{form.form_id}}</th>
+                    <td>{{form.skill_description}}</td>
+                    <td>{{form.form_name}}</td>
                     <td>
                       <a routerLink="/adminquestion">
-                        <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="Edit Form" style="font-size:1.3em; color:#007bff"></i>
+                        <i class="fas fa-plus-circle" data-toggle="tooltip" data-placement="top" title="Add Question" style="font-size:2em; color:#28a745"></i>
                       </a>
                     </td>
-                    <td>
-                      <a routerLink="/adminquestion">
-                        <i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Delete Form" style="font-size:1.3em; color:#dc3545"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Communication Form 1</td>
-                    <td>
-                      <a routerLink="/adminquestion">
-                        <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="Edit Form" style="font-size:1.3em; color:#007bff"></i>
-                      </a>
-                    </td>
-                    <td>
-                      <a routerLink="/adminquestion">
-                        <i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Delete Form" style="font-size:1.3em; color:#dc3545"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Technical Form 2</td>
                     <td>
                       <a routerLink="/adminquestion">
                         <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="Edit Form" style="font-size:1.3em; color:#007bff"></i>
@@ -155,34 +135,7 @@
                     </td>
                   </tr>
 
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Communication Form 2</td>
-                    <td>
-                      <a routerLink="/adminquestion">
-                        <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="Edit Form" style="font-size:1.3em; color:#007bff"></i>
-                      </a>
-                    </td>
-                    <td>
-                      <a routerLink="/adminquestion">
-                        <i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Delete Form" style="font-size:1.3em; color:#dc3545"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>Communication Form 3</td>
-                    <td>
-                      <a routerLink="/adminquestion">
-                        <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="Edit Form" style="font-size:1.3em; color:#007bff"></i>
-                      </a>
-                    </td>
-                    <td>
-                      <a routerLink="/adminquestion">
-                        <i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Delete Form" style="font-size:1.3em; color:#dc3545"></i>
-                      </a>
-                    </td>
-                  </tr>
+
 
                 </tbody>
               </table>
@@ -190,8 +143,8 @@
 
           </div>
 
-          <div class="card-footer text-center">
-          </div>
+          <!-- <div class="card-footer text-center">
+          </div> -->
         </div>
 
       </div>

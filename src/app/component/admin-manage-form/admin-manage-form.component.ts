@@ -15,10 +15,12 @@ export class AdminManageFormComponent implements OnInit {
   categories;
   subcategories;
   skills;
+  forms;
 
   constructor(private httpService: HttpService, private formBuilder: FormBuilder, private router: Router, private toastr: ToastrService) {
     this.createForm();
     this.getCategoryData();
+    this.getFormData();
   }
 
   ngOnInit() {
@@ -35,19 +37,19 @@ export class AdminManageFormComponent implements OnInit {
   }
 
   onSubmit(values) {
-    // values['addSkill'] = true;
-    // this.httpService.post('request_handler.php', values).then((response) => {
-    //   console.log(response);
-    //   if (response['success'] == true) {
-    //     this.toastr.success('Skill Added', '', { timeOut: 3000, closeButton: true, progressBar: true });
-    //     this.getCategoryData();
-    //     this.getSkillData();
-    //     this.createForm();
-    //   }
-    //   else {
-    //     this.toastr.error(response['error_message'], '', { timeOut: 3000, closeButton: true, progressBar: true });
-    //   }
-    // });
+    values['addForm'] = true;
+    this.httpService.post('request_handler.php', values).then((response) => {
+      console.log(response);
+      if (response['success'] == true) {
+        this.toastr.success('Form Added', '', { timeOut: 3000, closeButton: true, progressBar: true });
+        this.getCategoryData();
+        this.getFormData();
+        this.createForm();
+      }
+      else {
+        this.toastr.error(response['error_message'], '', { timeOut: 3000, closeButton: true, progressBar: true });
+      }
+    });
     console.log(values);
   }
 
@@ -78,6 +80,14 @@ export class AdminManageFormComponent implements OnInit {
     });
   }
 
+  getFormData(){
+    this.httpService.get('request_handler.php', { viewForm: true }).then((response) => {
+      if (response['success'] == true) {
+        this.forms = response['data'];
+      }
+    });
+  }
+
   onSelect(category_id) {
     this.httpService.get('request_handler.php', { viewSubCategory: 'viewSubCategory' }).then((response) => {
       if (response['success'] == true) {
@@ -95,5 +105,7 @@ export class AdminManageFormComponent implements OnInit {
       }
     });
   }
+
+
 
 }
