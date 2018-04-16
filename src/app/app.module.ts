@@ -23,6 +23,7 @@ import { AdminUpdateSubCategoryComponent } from './component/admin-update-sub-ca
 import { AdminUpdateSkillComponent } from './component/admin-update-skill/admin-update-skill.component';
 import { AdminUpdateFormComponent } from './component/admin-update-form/admin-update-form.component';
 import { AdminAddQuestionComponent } from './component/admin-add-question/admin-add-question.component';
+import { AdminManageQuestionComponent } from './component/admin-manage-question/admin-manage-question.component';
 
 import { HttpService } from './service/http.service';
 
@@ -45,6 +46,7 @@ import { HttpService } from './service/http.service';
     AdminUpdateSkillComponent,
     AdminUpdateFormComponent,
     AdminAddQuestionComponent,
+    AdminManageQuestionComponent,
   ],
   imports: [
     BrowserModule,

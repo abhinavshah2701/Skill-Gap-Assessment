@@ -12,6 +12,7 @@ import { AdminUpdateSubCategoryComponent } from './component/admin-update-sub-ca
 import { AdminUpdateSkillComponent } from './component/admin-update-skill/admin-update-skill.component';
 import { AdminUpdateFormComponent } from './component/admin-update-form/admin-update-form.component';
 import { AdminAddQuestionComponent } from './component/admin-add-question/admin-add-question.component';
+import { AdminManageQuestionComponent } from './component/admin-manage-question/admin-manage-question.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'adminManageSkill', component: AdminManageSkillComponent },
   { path: 'adminUpdateSkill/:id', component: AdminUpdateSkillComponent },
   { path: 'adminAddQuestion/:id', component: AdminAddQuestionComponent },
+  { path: 'adminManageQuestion/:id', component: AdminManageQuestionComponent },
 ];
 
 @NgModule({
