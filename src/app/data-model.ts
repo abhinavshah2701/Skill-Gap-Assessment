@@ -6,6 +6,8 @@ export class QuestionClass {
 }
 
 export class Option {
+  optionid = 0;
   optionname = '';
   optionrating = '';
+  correctoption = '';
 }

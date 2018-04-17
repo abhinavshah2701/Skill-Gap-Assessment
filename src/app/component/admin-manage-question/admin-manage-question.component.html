@@ -14,17 +14,129 @@
 
               <div class="col-lg-11 col-md-11 col-sm-10">
                 <span class="align-middle">
-                  <h4>Form_Name Quetionnaire</h4>
+                  <h4>{{form_description}} Quetionnaire</h4>
                 </span>
               </div>
               <div class="col-lg-1 col-md-1 col-sm-2">
                 <span class="align-middle">
-                  <a routerLink="/adminAddQuestion/1">
+                  <a data-toggle="modal" data-target=".bd-example-modal-lg">
                     <i class="fas fa-plus-circle" data-toggle="tooltip" data-placement="top" title="Add Question" style="font-size:2em; color:#28a745"></i>
                   </a>
                 </span>
               </div>
             </div>
+
+
+
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <form [formGroup]="questionForm" novalidate>
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Add Question</h5>
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                      <div class="form-row">
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                          <label for="validationTooltip03" class="font-weight-bold">Question Description</label>
+                          <input type="text" class="form-control" formControlName="questionname" id="validationTooltip03" placeholder="Enter Question"
+                            required>
+                          <div class="invalid-tooltip">
+                            Please Enter A Question.
+                          </div>
+                        </div>
+
+                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                          <label for="exampleFormControlSelect1" class="font-weight-bold">Question Type</label>
+                          <select class="form-control" formControlName="questiontype" id="exampleFormControlSelect1">
+                            <option value="" disabled selected>Question Type</option>
+                            <option value="Single Choice">Single Choice</option>
+                            <option value="Multiple Choice">Multiple Choice</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group col-lg-2 col-md-6 col-sm-12">
+                          <label for="validationTooltip03" class="font-weight-bold">Total Rating</label>
+                          <input type="text" class="form-control" formControlName="totalrating" id="validationTooltip03" placeholder="Enter Rating"
+                            required>
+                          <div class="invalid-tooltip">
+                            Please Enter A Rating.
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div formArrayName="option_array">
+                        <div *ngFor="let option of option_array.controls; let i=index" [formGroupName]="i">
+                          <div class="form-row">
+                            <input type="hidden" class="form-control" formControlName="optionid" ngModel={{i+1}}  id="validationTooltip03">
+                          </div>
+
+                          <div class="form-row">
+                            <div class="form-group col-lg-5 col-md-12 col-sm-12">
+                              <label for="validationTooltip03" class="font-weight-bold">Option {{i + 1}}</label>
+                              <input type="text" class="form-control" formControlName="optionname" id="validationTooltip03" placeholder="Enter Option"
+                                required>
+                              <div class="invalid-tooltip">
+                                Please Enter A Option.
+                              </div>
+                            </div>
+
+                            <div class="form-group col-lg-2 col-md-12 col-sm-12">
+                              <label for="validationTooltip03" class="font-weight-bold">Rating</label>
+                              <input type="text" class="form-control" formControlName="optionrating" id="validationTooltip03" placeholder="Enter Rating"
+                                required>
+                              <div class="invalid-tooltip">
+                                Please Enter Option Rating.
+                              </div>
+                            </div>
+
+                            <div class="form-group col-lg-3 col-md-12 col-sm-12">
+                              <label for="exampleFormControlSelect1" class="font-weight-bold">Correct Option</label>
+                              <select class="form-control" formControlName="correctoption" id="exampleFormControlSelect1">
+                                <option value="" disabled selected>Select Choice</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                              </select>
+                            </div>
+
+                            <div class="form-group col-lg-2 col-md-12 col-sm-12">
+                              <label for="exampleFormControlSelect1" class="font-weight-bold">Delete</label>
+                              <button type="button" class="btn btn-danger" (click)="removeOption(i)">
+                                <i class="fas fa-times" style="font-size:1em; color:white"></i>&nbsp; Remove
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <button type="button" class="btn btn-success" (click)="addOption()">
+                          <i class="fas fa-plus" style="font-size:1em; color:white"></i>&nbsp; Add Option
+                        </button>
+                      </div>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" (click)="onSubmit(questionForm.value)" [disabled]="!questionForm.valid" data-dismiss="modal">
+                        Add Question &nbsp;
+                        <i class="fas fa-location-arrow" style="font-size:1em; color:white"></i>
+                      </button>&nbsp;
+                      <button type="reset" class="btn btn-primary">
+                        Clear &nbsp;
+                        <i class="fas fa-undo" style="font-size:1em; color:white"></i>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
 
           </div>
 
@@ -51,7 +163,7 @@
               </a>
             </div>
 
-            </div>
+          </div>
 
           <!-- <div class="card-body">
 
