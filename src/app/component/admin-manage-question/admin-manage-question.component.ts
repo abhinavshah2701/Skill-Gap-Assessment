@@ -64,6 +64,7 @@ export class AdminManageQuestionComponent implements OnChanges {
       if (response['success'] == true) {
         this.toastr.success('Question Added', '', { timeOut: 3000, closeButton: true, progressBar: true });
         // this.router.navigate(['adminManageForm']);
+        this.createForm();
       }
       else {
         this.toastr.error(response['error_message'], '', { timeOut: 3000, closeButton: true, progressBar: true });
