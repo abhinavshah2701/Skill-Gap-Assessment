@@ -74,7 +74,7 @@
                       <div formArrayName="option_array">
                         <div *ngFor="let option of option_array.controls; let i=index" [formGroupName]="i">
                           <div class="form-row">
-                            <input type="hidden" class="form-control" formControlName="optionid" ngModel={{i+1}}  id="validationTooltip03">
+                            <input type="hidden" class="form-control" formControlName="optionid" ngModel={{i+1}} id="validationTooltip03">
                           </div>
 
                           <div class="form-row">
@@ -142,18 +142,47 @@
 
           <div class="card-body">
 
-            <div class="col mt-3">
-              <p class="card-text">
-                <b>Q1. With supporting text below as a natural lead-in to additional content.</b>
+            <div class="col mt-3" *ngFor="let question of questions; let i= index" [attr.data-index]="i">
+              <p class="card-text-justify">
+                <!-- <b> Q{{question.question_id}}. {{question.question_description}}</b> -->
+                <b> Q{{i+1}}. {{question.question_description}}</b>
               </p>
+              <div class="float-left">
+                <b>Question Type - {{question.question_type}} </b>
+              </div>
+              <div class="float-lg-right float-md-right">
+                <b>Rating - {{question.total_rating}}</b>
+              </div>
 
-              <ul class="list-group">
-                <li class="list-group-item">Option 1</li>
-                <li class="list-group-item">Option 2</li>
-                <li class="list-group-item">Option 3</li>
-                <li class="list-group-item">Option 4</li>
-              </ul>
-              <br>
+              
+              <table class="table table-bordered table-hover text-center">
+                  <thead class="thead" style="background: #343a40; color:white">
+                    <tr>
+                      <th scope="col">Sr No.</th>
+                      <th scope="col">Option Description</th>
+                      <th scope="col">Correct Option</th>
+                      <th scope="col">Rating</th>
+                    </tr>
+                  </thead>
+  
+                  <tbody>
+                    <tr *ngFor="let options of question.options">
+                      <th scope="row">{{options.option_id}}</th>
+                      <td>{{options.option_description}}</td>
+                      <td>{{options.correct_option}}</td>
+                      <td>{{options.option_rating}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+
+              <!-- <ul class="list-group col mt-1">
+                <li class="list-group-item" *ngFor="let options of question.options">
+                  <div class="float-left"> {{options.option_id}}. {{options.option_description}}</div>
+                  <div class="float-right"> {{options.correct_option}} {{options.option_rating}}</div>
+                </li>
+              </ul> -->
+              <!-- <br> -->
 
               <a href="" class="btn btn-primary">
                 <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="Edit Question" style="font-size:1em; color:white"></i>&nbsp; Edit Question

@@ -17,10 +17,12 @@ export class AdminManageQuestionComponent implements OnChanges {
   butDisabled: boolean = true;
   questionForm: FormGroup;
   form_description: string;
+  questions;
 
   constructor(private httpService: HttpService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute, private toastr: ToastrService) {
     this.createForm();
     this.getFormData();
+    this.getQuestions();
   }
 
   ngOnChanges() {
@@ -64,6 +66,7 @@ export class AdminManageQuestionComponent implements OnChanges {
       if (response['success'] == true) {
         this.toastr.success('Question Added', '', { timeOut: 3000, closeButton: true, progressBar: true });
         // this.router.navigate(['adminManageForm']);
+        this.getQuestions();
         this.createForm();
       }
       else {
@@ -72,6 +75,21 @@ export class AdminManageQuestionComponent implements OnChanges {
     });
     console.log(values);
   }
+
+
+  getQuestions() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.httpService.get('request_handler.php', { viewQuestions: true, form_id: id }).then((response) => {
+      if (response['success'] == true) {
+        this.questions = response['data'];
+        // console.log(this.questions['options']);
+      }
+      else {
+        this.toastr.error(response['error_message'], '', { timeOut: 3000, closeButton: true, progressBar: true });
+      }
+    });
+  }
+
 
   getFormData() {
     const id = this.route.snapshot.paramMap.get('id');
