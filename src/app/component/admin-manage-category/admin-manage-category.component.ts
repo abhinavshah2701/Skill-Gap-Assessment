@@ -14,14 +14,16 @@ export class AdminManageCategoryComponent implements OnInit {
 
   categoryForm: FormGroup;
   categories;
+  selectedCategory: any;
+  updateForm: boolean;
 
   constructor(private httpService: HttpService, private formBuilder: FormBuilder, private router: Router, private toastr: ToastrService) {
     this.createForm();
     this.getCategoryData();
+    this.selectedCategory = { category_description: '' };
   }
 
   ngOnInit() {
-    this.createForm();
   }
 
   createForm() {
@@ -32,35 +34,49 @@ export class AdminManageCategoryComponent implements OnInit {
 
 
   onSubmit(values) {
-    values['addCategory'] = true;
+
+    if (this.updateForm) {
+      values['updateCategory'] = true;
+      values['category_id'] = this.selectedCategory['category_id'];
+    }
+    else {
+      values['addCategory'] = true;
+    }
+
     this.httpService.post('request_handler.php', values).then((response) => {
-      console.log(response);
       if (response['success'] == true) {
         this.toastr.success('Category Added', '', { timeOut: 3000, closeButton: true, progressBar: true });
         this.getCategoryData();
-        this.createForm();
+        this.categoryForm.reset();
       }
       else {
         this.toastr.error(response['error_message'], '', { timeOut: 3000, closeButton: true, progressBar: true });
       }
     });
-    console.log(values);
   }
 
   getCategoryData() {
-    this.httpService.get('request_handler.php', { viewCategory: 'viewCategory' }).then((response) => {
+    this.httpService.get('request_handler.php', { viewCategory: true }).then((response) => {
       if (response['success'] == true) {
         this.categories = response['data'];
       }
     });
   }
 
-  deleteCategory(id) {
-    this.httpService.post('request_handler.php', { deleteCategory: true, category_id: id }).then((response) => {
-      console.log(response);
+  updateCategory(category) {
+    this.selectedCategory = category;
+    this.toggleUpdate(true);
+  }
+
+  toggleUpdate(value: boolean) {
+    this.updateForm = value;
+  }
+
+  deleteCategory(category, i) {
+    this.httpService.post('request_handler.php', { deleteCategory: true, category_id: category.category_id }).then((response) => {
       if (response['success'] == true) {
         this.toastr.success('Category Deleted', '', { timeOut: 3000, closeButton: true, progressBar: true });
-        this.getCategoryData();
+        this.categories.splice(i, 1);
       }
       else {
         this.toastr.error(response['error_message'], '', { timeOut: 3000, closeButton: true, progressBar: true });
