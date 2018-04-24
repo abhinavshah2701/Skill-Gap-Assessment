@@ -45,7 +45,7 @@ export class AdminManageCategoryComponent implements OnInit {
 
     this.httpService.post('request_handler.php', values).then((response) => {
       if (response['success'] == true) {
-        this.toastr.success('Category Added', '', { timeOut: 3000, closeButton: true, progressBar: true });
+        this.toastr.success(response['success_message'], '', { timeOut: 3000, closeButton: true, progressBar: true });
         this.getCategoryData();
         this.categoryForm.reset();
       }
