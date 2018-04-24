@@ -75,7 +75,7 @@ export class AdminManageCategoryComponent implements OnInit {
   deleteCategory(category, i) {
     this.httpService.post('request_handler.php', { deleteCategory: true, category_id: category.category_id }).then((response) => {
       if (response['success'] == true) {
-        this.toastr.success('Category Deleted', '', { timeOut: 3000, closeButton: true, progressBar: true });
+        this.toastr.success(response['success_message'], '', { timeOut: 3000, closeButton: true, progressBar: true });
         this.categories.splice(i, 1);
       }
       else {
