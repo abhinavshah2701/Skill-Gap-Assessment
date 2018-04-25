@@ -19,7 +19,7 @@
               </div>
               <div class="col-lg-1 col-md-1 col-sm-2">
                 <span class="align-middle">
-                  <a data-toggle="modal" data-target=".bd-example-modal-lg">
+                  <a data-toggle="modal" data-target=".bd-example-modal-lg" (click)="toggleUpdate(false)">
                     <i class="fas fa-plus-circle" data-toggle="tooltip" data-placement="top" title="Add Sub Category" style="font-size:2em; color:#28a745"></i>
                   </a>
                 </span>
@@ -31,7 +31,8 @@
                 <div class="modal-content">
                   <form [formGroup]="subCategoryForm" novalidate>
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Add Sub Category</h5>
+                      <h5 class="modal-title" id="exampleModalLabel" *ngIf="!updateForm">Add Sub Category</h5>
+                      <h5 class="modal-title" id="exampleModalLabel" *ngIf="updateForm">Edit Sub Category</h5>
                       <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                       </button>
@@ -42,7 +43,8 @@
                       <div class="form-row">
                         <div class="form-group col-lg-12 col-md-12 col-sm-12">
                           <label for="exampleFormControlSelect1" class="font-weight-bold">Select Category</label>
-                          <select class="form-control" formControlName="categoryname" id="exampleFormControlSelect1">
+                          <select class="form-control" formControlName="categoryname" [value]="updateForm?selectedSubCategory.category_description : ''"
+                            id="exampleFormControlSelect1">
                             <option value="" disabled selected>Select Category</option>
                             <option *ngFor="let category of categories" value="{{category.category_description}}">{{category.category_description}}</option>
                           </select>
@@ -52,8 +54,8 @@
                       <div class="form-row">
                         <div class="form-group col-lg-12 col-md-12 col-sm-12">
                           <label for="validationTooltip03" class="font-weight-bold">Sub Category Name</label>
-                          <input type="text" class="form-control" formControlName="subcategoryname" id="validationTooltip03" placeholder="Enter Sub Category Name"
-                            required>
+                          <input type="text" class="form-control" formControlName="subcategoryname" [value]="updateForm?selectedSubCategory.sub_category_description : ''"
+                            id="validationTooltip03" placeholder="Enter Sub Category Name" required>
                           <div class="invalid-tooltip">
                             Please Enter Sub Category Name.
                           </div>
@@ -62,11 +64,16 @@
                     </div>
 
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-primary" (click)="onSubmit(subCategoryForm.value)" [disabled]="!subCategoryForm.valid"
-                        data-dismiss="modal">
-                        Add Sub Category &nbsp;
+                      <button type="button" class="btn btn-primary" (click)="onSubmit(subCategoryForm.value)" [disabled]="!subCategoryForm.valid" data-dismiss="modal">
+                        <span *ngIf="!updateForm">
+                          Add Sub Category &nbsp;
+                        </span>
+                        <span *ngIf="updateForm">
+                          Edit Sub Category &nbsp;
+                        </span>
                         <i class="fas fa-location-arrow" style="font-size:1em; color:white"></i>
                       </button>&nbsp;
+
                       <button type="reset" class="btn btn-primary">
                         Clear &nbsp;
                         <i class="fas fa-undo" style="font-size:1em; color:white"></i>
@@ -94,17 +101,17 @@
                 </thead>
 
                 <tbody>
-                  <tr *ngFor="let subcategory of subcategories">
-                    <th scope="row">{{subcategory.sub_category_id}}</th>
+                  <tr *ngFor="let subcategory of subcategories; let i = index" [attr.data-index]="i">
+                    <th scope="row">{{i+1}}</th>
                     <td>{{subcategory.category_description}}</td>
                     <td>{{subcategory.sub_category_description}}</td>
                     <td>
-                      <a routerLink="/adminUpdateSubCategory/{{subcategory.sub_category_id}}">
+                      <a data-toggle="modal" data-target=".bd-example-modal-lg" (click)="updateSubCategory(subcategory)">
                         <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="Edit Sub Category" style="font-size:1.3em; color:#007bff"></i>
                       </a>
                     </td>
                     <td>
-                      <a (click)="deleteSubCategory(subcategory.sub_category_id)">
+                      <a (click)="deleteSubCategory(subcategory,i)">
                         <i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Delete Sub Category" style="font-size:1.3em; color:#dc3545"></i>
                       </a>
                     </td>

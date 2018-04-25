@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../service/http.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr'; 
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -15,15 +15,17 @@ export class AdminManageSubCategoryComponent implements OnInit {
   subCategoryForm: FormGroup;
   categories;
   subcategories;
-  
-  constructor(private httpService: HttpService,private formBuilder: FormBuilder,private router: Router,private toastr: ToastrService) {
+  selectedSubCategory: any;
+  updateForm: boolean;
+
+  constructor(private httpService: HttpService, private formBuilder: FormBuilder, private router: Router, private toastr: ToastrService) {
     this.createForm();
     this.getCategoryData();
-    this.getSubCategoryData()
-   }
+    this.getSubCategoryData();
+    this.selectedSubCategory = { category_description: '', sub_category_description: '' };
+  }
 
-   ngOnInit() {
-    this.createForm();
+  ngOnInit() {
   }
 
   createForm() {
@@ -32,47 +34,62 @@ export class AdminManageSubCategoryComponent implements OnInit {
       subcategoryname: ['', Validators.required]
     });
   }
-  
 
-  onSubmit(values)
+
+  onSubmit(values) 
   {
-    values['addSubCategory'] = true;
-    this.httpService.post('request_handler.php',values).then((response)=>{
-      if(response['success']==true){
-        this.toastr.success('Sub Category Added','',{timeOut:3000,closeButton:true,progressBar:true});
-        this.getCategoryData();
-        this.getSubCategoryData()
-        this.createForm();
+    if (this.updateForm) {
+      values['updateSubCategory'] = true;
+      values['sub_category_id'] = this.selectedSubCategory['sub_category_id'];
+    }
+    else {
+      values['addSubCategory'] = true;
+    }
+
+    this.httpService.post('request_handler.php', values).then((response) => {
+      if (response['success'] == true) {
+        this.toastr.success(response['success_message'], '', { timeOut: 3000, closeButton: true, progressBar: true });
+        this.getSubCategoryData();
+        this.subCategoryForm.reset({categoryname: ''});
       }
-      else{
-        this.toastr.error(response['error_message'],'',{timeOut:3000,closeButton:true,progressBar:true});
+      else {
+        this.toastr.error(response['error_message'], '', { timeOut: 3000, closeButton: true, progressBar: true });
       }
     });
+    console.log(values);
   }
 
-  getCategoryData()
-  {
-    this.httpService.get('request_handler.php',{viewCategory: true }).then((response)=>{
+  getCategoryData() {
+    this.httpService.get('request_handler.php', { viewCategory: true }).then((response) => {
       if (response['success'] == true) {
         this.categories = response['data'];
       }
     });
   }
 
-  getSubCategoryData()
-  {
-    this.httpService.get('request_handler.php',{viewSubCategory: true }).then((response)=>{
+  getSubCategoryData() {
+    this.httpService.get('request_handler.php', { viewSubCategory: true }).then((response) => {
       if (response['success'] == true) {
         this.subcategories = response['data'];
       }
     });
   }
 
-  deleteSubCategory(id) {
-    this.httpService.post('request_handler.php', { deleteSubCategory: true, sub_category_id: id }).then((response) => {
+
+  updateSubCategory(subcategory) {
+    this.selectedSubCategory = subcategory;
+    this.toggleUpdate(true);
+  }
+
+  toggleUpdate(value: boolean) {
+    this.updateForm = value;
+  }
+
+  deleteSubCategory(subcategory, i) {
+    this.httpService.post('request_handler.php', { deleteSubCategory: true, sub_category_id: subcategory.sub_category_id }).then((response) => {
       if (response['success'] == true) {
-        this.toastr.success('Sub Category Deleted', '', { timeOut: 3000, closeButton: true, progressBar: true });
-        this.getSubCategoryData();
+        this.toastr.success(response['success_message'], '', { timeOut: 3000, closeButton: true, progressBar: true });
+        this.subcategories.splice(i, 1);
       }
       else {
         this.toastr.error(response['error_message'], '', { timeOut: 3000, closeButton: true, progressBar: true });
