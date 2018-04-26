@@ -3,6 +3,7 @@ import { HttpService } from '../../service/http.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class AdminManageCategoryComponent implements OnInit {
   selectedCategory: any;
   updateForm: boolean;
 
-  constructor(private httpService: HttpService, private formBuilder: FormBuilder, private router: Router, private toastr: ToastrService) {
+  constructor(private httpService: HttpService, private formBuilder: FormBuilder, private router: Router, private toastr: ToastrService, private location:Location) {
     this.createForm();
     this.getCategoryData();
     this.selectedCategory = { category_description: '' };
@@ -48,6 +49,7 @@ export class AdminManageCategoryComponent implements OnInit {
         this.toastr.success(response['success_message'], '', { timeOut: 3000, closeButton: true, progressBar: true });
         this.getCategoryData();
         this.categoryForm.reset();
+        this.location.back();
       }
       else {
         this.toastr.error(response['error_message'], '', { timeOut: 3000, closeButton: true, progressBar: true });
